@@ -6,6 +6,6 @@ const { controlMD5 } = require("../middlewares/authorization/auth");
 const router = express.Router();
 
 router.post("/login", controlMD5, login);
-router.post("/isLogged", controlMD5, isLogged);
+router.post("/is-logged", controlMD5, isLogged);
 
 module.exports = router;
