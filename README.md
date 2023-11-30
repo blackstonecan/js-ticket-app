@@ -122,3 +122,41 @@ It runs in localhost's 5000 PORT defaultly.
     }
 }
 ```
+---
+# Category
+
+### `PUT /category @AdminTokenControl`
+```json
+{
+	"categoryId":"", @String @required
+	"name":"", @String
+	"price":0.0, @Double
+	"extraCapacity":0 @Integer
+}
+```
+---
+### `POST /category/ticket @AdminTokenControl`
+```json
+{
+	"categoryId":"", @String @required
+	"count":0 @Integer @required
+}
+```
+---
+# Auth
+
+### `POST /auth/login @MD5Control`
+```json
+{
+	"email":"", @String @required
+	"password":"", @String @required
+}
+```
+---
+### `POST /auth/islogged @MD5Control`
+```json
+{
+	"token":"", @String @required
+	"userId":"", @String @required
+}
+```
