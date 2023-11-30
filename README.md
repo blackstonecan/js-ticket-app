@@ -160,3 +160,28 @@ It runs in localhost's 5000 PORT defaultly.
 	"userId":"", @String @required
 }
 ```
+---
+# Admin
+
+### `GET /admin:id @AdminTokenControl`
+---
+### `DELETE /admin:id @AdminTokenControl`
+
+---
+### `POST /admin @MD5Control`
+```json
+{
+	"firstName":"", @String @required
+	"lastName":"", @String @required
+	"email":"", @String @required
+	"password":"", @String @required
+}
+```
+---
+### `POST /admin/login @MD5Control`
+```json
+{
+	"email":"", @String @required
+	"password":"", @String @required
+}
+```
