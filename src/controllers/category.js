@@ -9,9 +9,9 @@ const update = asyncErrorWrapper(async (req, res, next) => {
     try {
         const { categoryId, name, price, extraCapacity } = req.body;
         if (!categoryId) return next(new CustomError("Please provide valid inputs", 400));
-        if (!name && typeof name !== "string") return next(new CustomError("Please provide valid inputs", 400));
-        if (!price && typeof price !== "number") return next(new CustomError("Please provide valid inputs", 400));
-        if (!extraCapacity && typeof extraCapacity !== "number") return next(new CustomError("Please provide valid inputs", 400));
+        if (name && typeof name !== "string") return next(new CustomError("Please provide valid inputs", 400));
+        if (price && typeof price !== "number") return next(new CustomError("Please provide valid inputs", 400));
+        if (extraCapacity && typeof extraCapacity !== "number") return next(new CustomError("Please provide valid inputs", 400));
 
         let response;
         if (name || price) {
