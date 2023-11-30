@@ -20,57 +20,105 @@ There are three authorization methods.
 ### Endpoints and parameters
 It runs in localhost's 5000 PORT defaultly. 
 
-### User
+# User
 
-### `GET /user:id`
+### `GET /user:id @UserTokenControl`
 ---
-### `POST /user`
+### `POST /user @MD5Control`
+```json
+{
+    "firstName":"", @String @required
+    "lastName":"", @String @required
+    "email":"", @String @required
+    "password":"", @String @required
+    "budget":0.0 @Double
+}
+```
+---
+### `DELETE /user:id @UserTokenControl`
+---
+### `PUT /user/buy @UserTokenControl`
 
-| Parameter   | Type    | Required |
-|-------------|---------|----------|
-| `firstName` | String  | Yes      |
-| `lastName`  | String  | Yes      |
-| `email`     | String  | Yes      |
-| `password`  | String  | Yes  	   |
-| `budget`    | Double  | No       |
+```json
+{
+    "userId":"", @String @required
+    "ticketId":"", @String @required
+}
+```
 ---
-### `DELETE /user:id`
----
-### `PUT /user/buy`
+### `PUT /user/sell @UserTokenControl`
 
-| Parameter   | Type    | Required |
-|-------------|---------|----------|
-| `userId`    | String  | Yes      |
-| `ticketId`  | String  | Yes      |
+```json
+{
+    "userId":"", @String @required
+    "ticketId":"", @String @required
+}
+```
 ---
-### `PUT /user/sell`
+# Team
 
-| Parameter   | Type    | Required |
-|-------------|---------|----------|
-| `userId`    | String  | Yes      |
-| `ticketId`  | String  | Yes      |
+### `GET /team:id @MD5Control`
 ---
-### Team
+### `POST /team @AdminTokenControl`
+```json
+{
+    "name":"", @String @required
+    "shortName":"", @String @required
+    "logo":"" @Base64String
+}
+```
+---
+### `DELETE /team:id @AdminTokenControl`
+---
+### `PUT/team @AdminTokenControl`
+```json
+{
+	"id":"", @String @required
+    "name":"", @String
+    "shortName":"", @String
+    "logo":"" @Base64String
+}
+```
+---
+# Match
 
-### `GET /team:id`
+### `GET /match:id @MD5Control`
 ---
-### `POST /team`
-
-| Parameter   | Type    | Required |
-|-------------|---------|----------|
-| `name` | String  | Yes      |
-| `shortName`  | String  | Yes      |
-| `logo`     | Base64 String  | Yes      |
+### `GET /match @MD5Control`
 ---
-### `DELETE /team:id`
+### `POST /match @AdminTokenControl`
+```json
+{
+    "teams":[], @[String] @required
+    "date":"", @String @required
+    "stadium":"" @String @required
+    "categories":[ @required
+	    {
+		    "name":"", @String @required
+		    "price":0.0, @Double @required
+		    "capacity":0 @Integer @required
+	    }
+    ]
+}
+```
 ---
-### `PUT/team`
-
-| Parameter   | Type    | Required |
-|-------------|---------|----------|
-| `id` | String  | Yes      |
-| `name` | String  | Yes      |
-| `shortName`  | String  | Yes      |
-| `logo`     | Base64 String  | Yes      |
+### `PUT /match @AdminTokenControl`
+```json
+{
+    "id":"", @String @required
+    "date":"", @String
+    "stadium":"" @String
+}
+```
 ---
-### 
+### `POST /match/category @AdminTokenControl`
+```json
+{
+    "matchId":"", @String @required
+    "category":{ @required
+		"name":"", @String @required
+		"price":0.0, @Double @required
+		"capacity":0 @Integer @required
+    }
+}
+```
